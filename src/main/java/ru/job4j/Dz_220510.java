@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Dz_220510 {
     public static void main(String args[]) {
         int a = 14;
-        int b = 5;
+        int b = 5;//hjgj
         float c = 8.4F;
         float d = 9.1F;
         int ab = a + b;
