@@ -1,19 +1,8 @@
 package dzSemTriOdinInterfeysy;
 
-public class ChinaBattery implements ChinaBaterryInterface {
-
-    private int charge;
-
-    public ChinaBattery(int charge) {
-        this.charge = charge;
-    }
-
-    public boolean charge() {
-        if (charge > 0) {
-            charge--;
-            return true;
-        } else {
-            return false;
-        }
+public class ChinaBattery extends Battery {
+    public ChinaBattery() {
+        super();
+        setCharge(5);
     }
 }

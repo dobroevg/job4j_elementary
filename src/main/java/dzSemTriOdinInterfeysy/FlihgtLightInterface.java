@@ -6,6 +6,6 @@ public interface FlihgtLightInterface {
 
     void off();
 
-    boolean isLight();
+    boolean isWork();
 
 }

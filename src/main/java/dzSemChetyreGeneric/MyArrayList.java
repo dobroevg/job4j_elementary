@@ -3,27 +3,14 @@ package dzSemChetyreGeneric;
 import java.util.Arrays;
 
 public class MyArrayList<T> {
-    /**
-     * Создает коллекцию заданной ёмкости, то есть с запасом.
-     * Логически коллекция считается пустой.
-     * @param capacity ёмкость коллекции, колечество элементов,
-     * 		  которое можно добавить без пересоздания массива
-     */
-    @SuppressWarnings("unchecked") // подавляет предупрежение о подозрителном приведении типа
+    @SuppressWarnings("unchecked")
     public MyArrayList(int capacity) {
-        array = (T[]) new Object[capacity];
+        data = (T[]) new Object[capacity];
         this.size = 0;
     }
 
-    /**
-     * Создает коллекцию на основе существующего массива
-     *
-     * @param array существующий массив
-     */
     public MyArrayList(T[] array) {
-        // безопаснее скопировать массив, иначе снаружи останется доступ к внутренностям
-        // коллекции
-        this.array = Arrays.copyOf(array, array.length);
+        this.data = Arrays.copyOf(array, array.length);
         this.size = array.length;
     }
 
@@ -33,7 +20,7 @@ public class MyArrayList<T> {
      */
     public void pushBack(T value) {
         ensureCapacity();
-        array[size] = value;
+        data[size] = value;
         size++;
     }
 
@@ -47,7 +34,7 @@ public class MyArrayList<T> {
             System.err.println("Error Size!");
             return null;
         } else {
-            return array[--size];
+            return data[--size];
         }
     }
 
@@ -58,9 +45,9 @@ public class MyArrayList<T> {
     public void pushFront(T value) {
         ensureCapacity();
         for (int i = size - 1; i >= 0; i--) {
-            array[i + 1] = array[i];
+            data[i + 1] = data[i];
         }
-        array[0] = value;
+        data[0] = value;
         size++;
     }
 
@@ -74,9 +61,9 @@ public class MyArrayList<T> {
             System.err.println("Error Size!");
             return null;
         } else {
-            T firstElement = array[0];
+            T firstElement = data[0];
             for (int i = 1; i < size; i++) {
-                array[i - 1] = array[i];
+                data[i - 1] = data[i];
             }
             size--;
             return firstElement;
@@ -87,7 +74,7 @@ public class MyArrayList<T> {
      * Усекает емкость коллекции до ее размера
      */
     public void truncate() {
-        array = Arrays.copyOf(array, size);
+        data = Arrays.copyOf(data, size);
     }
 
     /**
@@ -103,7 +90,7 @@ public class MyArrayList<T> {
      * @return емкость коллекции
      */
     public int getCapacity() {
-        return array.length;
+        return data.length;
     }
 
     /**
@@ -112,7 +99,7 @@ public class MyArrayList<T> {
      * @return значение элемента коллекции
      */
     public T get(int index) {
-        return array[index];
+        return data[index];
     }
 
     /**
@@ -124,7 +111,7 @@ public class MyArrayList<T> {
         if (index >= size) {
             System.err.println("Error!");
         } else {
-            array[index] = value;
+            data[index] = value;
         }
 
     }
@@ -134,8 +121,8 @@ public class MyArrayList<T> {
      */
     private void ensureCapacity() {
         if (size == getCapacity()) {
-            int capacity = (int) (array.length * 1.5) + 1;
-            array = Arrays.copyOf(array, capacity);
+            int capacity = (int) (data.length * 1.5) + 1;
+            data = Arrays.copyOf(data, capacity);
         }
     }
 
@@ -147,5 +134,5 @@ public class MyArrayList<T> {
     /**
      * Массив обобщенного типа с элементами коллекции
      */
-    private T[] array = null;
+    private T[] data = null;
 }

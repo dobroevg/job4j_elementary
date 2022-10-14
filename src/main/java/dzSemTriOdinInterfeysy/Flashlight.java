@@ -1,28 +1,52 @@
 package dzSemTriOdinInterfeysy;
 
-public class Flashlight implements FlihgtLightInterface {
-    public Flashlight() {
-        light = false;
+public class Flashlight extends СonsumerEnergy{
 
+    public Battery getBattery() {
+        return battery;
     }
 
-    private ChinaBattery battery = new ChinaBattery(5);
+    private Battery battery;
+
+    private boolean work;
+
+    public void getWork(boolean work) {
+        this.work = work;
+    }
+
+    public void setDischarge(double discharge) {
+
+        this.discharge = discharge;
+    }
+
+    public double getDischarge() {
+        return discharge;
+    }
+
+    private double discharge;
+
+    public Flashlight(Battery battery) {
+        work = false;
+        this.battery = battery;
+        this.discharge = 1;
+    }
 
     public void on() {
-        if (!light) {
-            light = battery.charge();
+        if (!work) {
+            work = battery.charge(discharge);
         }
     }
 
+
     public void off() {
-        light = false;
+        work = false;
 
     }
 
-    public boolean isLight() {
-        return light;
+    public boolean isWork() {
+        return work;
     }
 
-    private boolean light;
+
 }
 

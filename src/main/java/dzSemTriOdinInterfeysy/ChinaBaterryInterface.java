@@ -2,5 +2,5 @@ package dzSemTriOdinInterfeysy;
 
 public interface ChinaBaterryInterface {
 
-    boolean charge();
+    boolean charge(double recharge);
 }
